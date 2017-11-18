@@ -150,7 +150,6 @@ int main(int argc, char *argv[]) {
         m_axi_bound[3] = 128;
         printf("t4\n");
 
-        d
      //    XBacksub_Start(&backsub);
 
      //    // backsub_crtl_print(&backsub);
@@ -161,7 +160,7 @@ int main(int argc, char *argv[]) {
 	    // printf("backsub finished\n");
         dma_transmit_data(dma_1_base,sizeof(unsigned int) * 76800/2);
 
-        ma_config_print(dma_1_base);
+        dma_config_print(dma_1_base);
         
         //dma_s2mm_sync(dma_1_base);
         XFeature_Start(&feature);
