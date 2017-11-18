@@ -29,7 +29,7 @@ void dma_mm2s_status(unsigned int* dma_virtual_address);
 void memdump(void* virtual_address, int byte_count);
 
 unsigned int* dma_init_2ch(int fd, unsigned int base_addr,unsigned int src, unsigned int dst);
-int dma_init_1ch(unsigned int * virtual_address, int fd, unsigned int base_addr,unsigned int src);
+unsigned int* dma_init_1ch(int fd, unsigned int base_addr,unsigned int src);
 void axilite_release(unsigned int * virtual_address);
 void dma_receive_data(unsigned int * virtual_address, unsigned int byte_count);
 void dma_transmit_data(unsigned int * virtual_address, unsigned int byte_count);
