@@ -1,0 +1,1 @@
+/usr/bin/c++      CMakeFiles/backsub_test.dir/feature.cpp.o CMakeFiles/backsub_test.dir/axidma.c.o CMakeFiles/backsub_test.dir/drivers/xbacksub.c.o  -o backsub_test -lpthread -lncurses 

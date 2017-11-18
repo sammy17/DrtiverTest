@@ -1,0 +1,3 @@
+/home/debian/LinuxDrivers_feature/CMakeFiles/rebuild_cache.dir
+/home/debian/LinuxDrivers_feature/CMakeFiles/edit_cache.dir
+/home/debian/LinuxDrivers_feature/CMakeFiles/backsub_test.dir
