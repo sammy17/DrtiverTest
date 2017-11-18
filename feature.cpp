@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
     src = (uint32_t*)mmap(NULL, DDR_RANGE,PROT_READ|PROT_WRITE, MAP_SHARED, fdIP, TX_BASE_ADDR); 
     dst = (uint8_t*)mmap(NULL, DDR_RANGE,PROT_EXEC|PROT_READ|PROT_WRITE, MAP_SHARED, fdIP, RX_BASE_ADDR); 
 
-    if(backsub_init(&backsub)==0) {
+    if(feature_init(&backsub)==0) {
         printf("IP Core Initialized\n");
     }
 

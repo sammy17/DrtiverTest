@@ -103,8 +103,8 @@ unsigned int * dma_init_2ch(int fd, unsigned int base_addr,unsigned int src, uns
     return virtual_address;
 }
 // Only MM2S is enabled
-int dma_init_1ch(unsigned int * virtual_address, int fd, unsigned int base_addr,unsigned int src){
-	virtual_address = mmap(NULL, AXILITE_RANGE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, base_addr);
+unsigned int * dma_init_1ch(int fd, unsigned int base_addr,unsigned int src){
+	unsigned int * virtual_address = mmap(NULL, AXILITE_RANGE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, base_addr);
 	printf("Resetting DMA\n");
     dma_set(virtual_address, MM2S_CONTROL_REGISTER, 4);
 
@@ -122,7 +122,7 @@ int dma_init_1ch(unsigned int * virtual_address, int fd, unsigned int base_addr,
     dma_set(virtual_address, MM2S_START_ADDRESS, src); // Write source address
     dma_mm2s_status(virtual_address);
 
-    return 0;
+    return virtual_address;
 }
 
 void axilite_release(unsigned int * virtual_address){
