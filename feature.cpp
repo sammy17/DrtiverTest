@@ -163,6 +163,7 @@ int main(int argc, char *argv[]) {
         
         //dma_s2mm_sync(dma_1_base);
         XFeature_Start(&feature);
+        printf("started\n");
         dma_mm2s_sync(dma_1_base);
         while(!XFeature_IsDone(&feature));
 
