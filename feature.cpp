@@ -58,8 +58,14 @@ int fdIP;
 uint8_t * ybuffer = new uint8_t[N];
 
 
+#define M_AXI_BOUNDING 0x21000000
+#define M_AXI_FEATUREH 0x29000000
+
 unsigned char *m_dma_buffer_TX = (unsigned char*) TX_BASE_ADDR;
 unsigned char *m_dma_buffer_RX = (unsigned char*) RX_BASE_ADDR;
+
+uint16_t * m_axi_bound = (uint16_t *) M_AXI_BOUNDING;
+uint16_t * m_axi_feature = (uint16_t *) M_AXI_FEATUREH;
 
 // void backsub_crtl_print(XBacksub * backsub_ptr){
 //     printf("Backsub control reg : %X\n",backsub_ptr->Crtl_bus_BaseAddress);
@@ -99,6 +105,9 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
+    uint16_t * m_axi_bound = (uint16_t *) mmap(NULL, 80,PROT_READ|PROT_WRITE, MAP_SHARED, fdIP, M_AXI_BOUNDING);
+    uint16_t * m_axi_feature = (uint16_t *) mmap(NULL, 5120*2,PROT_READ|PROT_WRITE, MAP_SHARED, fdIP,M_AXI_FEATUREH);
+
 
     src = (uint32_t*)mmap(NULL, DDR_RANGE,PROT_READ|PROT_WRITE, MAP_SHARED, fdIP, TX_BASE_ADDR); 
     dst = (uint8_t*)mmap(NULL, DDR_RANGE,PROT_EXEC|PROT_READ|PROT_WRITE, MAP_SHARED, fdIP, RX_BASE_ADDR); 
@@ -120,10 +129,6 @@ int main(int argc, char *argv[]) {
     for (int it=0;it<1;it++){
        
         printf("t1\n");
-        for(int j=0;j<N;j++)
-        {
-            ybuffer[j] = buffer[2*j];
-        }
         printf("t2\n");
 
         // if (isFirst){
@@ -135,14 +140,14 @@ int main(int argc, char *argv[]) {
         // }
         // print_config();
         XFeature_Set_bounding(&feature,(u32)M_AXI_BOUNDING);
-            XFeature_Set_featureh(&feature,(u32)M_AXI_FEATUREH);
+        XFeature_Set_featureh(&feature,(u32)M_AXI_FEATUREH);
 
-            memset(m_axi_bound,0,sizeof(uint16_t)*40);
+        memset(m_axi_bound,0,sizeof(uint16_t)*40);
 
-            m_axi_bound[0] = 24;
-            m_axi_bound[1] = 24;
-            m_axi_bound[2] = 128;
-            m_axi_bound[3] = 128;
+        m_axi_bound[0] = 24;
+        m_axi_bound[1] = 24;
+        m_axi_bound[2] = 128;
+        m_axi_bound[3] = 128;
         printf("t4\n");
 
         dma_config_print(dma_1_base);
