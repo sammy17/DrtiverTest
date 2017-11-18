@@ -3,7 +3,7 @@ project(backsub_test)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(SOURCE_FILES feature.cpp axidma.c axidma.h frame1.h drivers/xbacksub.c drivers/xbacksub.h include/xparameters.h)
+set(SOURCE_FILES feature.cpp axidma.c axidma.h frame1.h drivers/xfeature.c drivers/xfeature.h include/xparameters.h)
 add_executable(backsub_test ${SOURCE_FILES})
 
 target_link_libraries( backsub_test -lpthread -lncurses )
